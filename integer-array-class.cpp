@@ -135,7 +135,7 @@ public:
 
 int main()
 {
-	std::cout << "Choose the length of your array: ";
+	std::cout << "Choose the length of arrayA: ";
 	int length{};
 	std::cin >> length;
 	clearInput();
@@ -144,17 +144,19 @@ int main()
 
 	arrayA.fillArray();
 
-	std::cout << '\n' << arrayA ;
+	std::cout << "\narrayA: " << arrayA << '\n';
 
 	IntArray arrayB{};
-
+	std::cout << "\nCopying arrayA into a new array, arrayB.\n";
 	arrayB = arrayA;
 
+	std::cout << "\nChange two elements in arrayA:";
 	arrayA.chooseElement();
 	arrayA.chooseElement();
 
-	std::cout << '\n' << arrayA ;
-	std::cout << '\n' << arrayB;
+	std::cout << "\nThe value in element 0 of arrayA is " << arrayA[0];
+	std::cout << "\narrayA: " << arrayA;
+	std::cout << "\narrayB: " << arrayB << '\n';
 	
 	return 0;
 } 
