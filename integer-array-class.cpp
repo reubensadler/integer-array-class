@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <limits>
+#include <initializer_list>
 
 void clearInput()
 {
@@ -25,6 +26,19 @@ public:
 
 		// Dynamically allocate the array using new[]
 		m_array = new int[m_length] {};
+	}
+
+	// Constructor for list initialisation
+	// Uses the other constructor to allocate memory, to reduce redundant code
+	IntArray(const std::initializer_list<int>& list) :
+		IntArray(static_cast<int>(list.size())) 
+	{
+		int count{ 0 };
+		for (auto& element : list)
+		{
+			m_array[count] = element;
+			count++;
+		}
 	}
 
 	// Deep copy to avoid problems with copying IntArray objects and delete[]
@@ -150,13 +164,18 @@ int main()
 	std::cout << "\nCopying arrayA into a new array, arrayB.\n";
 	arrayB = arrayA;
 
-	std::cout << "\nChange two elements in arrayA:";
+	std::cout << "\nChange two elements in arrayA.";
 	arrayA.chooseElement();
 	arrayA.chooseElement();
 
+	std::cout << "\nCreating arrayC using list initialisation.\n";
+
+	IntArray arrayC{ 9,8,7,6,5,4 };
+
 	std::cout << "\nThe value in element 0 of arrayA is " << arrayA[0];
 	std::cout << "\narrayA: " << arrayA;
-	std::cout << "\narrayB: " << arrayB << '\n';
+	std::cout << "\narrayB: " << arrayB;
+	std::cout << "\narrayC: " << arrayC << '\n';
 	
 	return 0;
 } 
